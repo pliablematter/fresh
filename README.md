@@ -11,4 +11,4 @@ Fresh is a library that keeps your iOS application's content up-to-date without 
 
 ## FAQ
 ### How will it know that my content changed?
-Each time you call [fresh update], Fresh will sent a GET request with the If-Modified-Since header to the remote address. The value of the header will be the Last-Modified date that was returned the last time a package was successfully downloaded. If the remote packages's modification date is new than the date provided then it will be returned. Otherwise, the server will return a status of ??? Not Modified, with an empty response. This provides a bandwidth-friendly way to check for changes.
+Each time you call [fresh update], Fresh will sent a GET request with the If-Modified-Since header to the remote address. The value of the header will be the Last-Modified date that was returned the last time a package was successfully downloaded. If the remote packages's modification date is new than the date provided then it will be returned. Otherwise, the server will return a status of "304 Not Modified", with an empty response. This provides a bandwidth-friendly way to check for changes.
