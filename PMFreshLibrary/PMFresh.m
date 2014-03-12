@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Pliable Matter. All rights reserved.
 //
 
+#import <AFNetworking.h>
+#import <SSZipArchive.h>
+
 #import "PMFresh.h"
 
 @implementation PMFresh
@@ -20,8 +23,6 @@
         self.packageName = packageName;
         self.remotePackageUrl = remotePackageUrl;
         self.localPackagePath = localPackagePath;
-        
-        [self update];
     }
     return self;
 }
@@ -30,7 +31,7 @@
 
 - (void)update
 {
-    
+    NSLog(@"update");
 }
 
 @end
