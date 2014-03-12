@@ -19,6 +19,7 @@
 		5BA356CF18D11C1600716D3D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA356B718D11C1600716D3D /* UIKit.framework */; };
 		5BA356D718D11C1600716D3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BA356D518D11C1600716D3D /* InfoPlist.strings */; };
 		5BA356D918D11C1600716D3D /* PMFreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA356D818D11C1600716D3D /* PMFreshTests.m */; };
+		5BA356E618D11D6D00716D3D /* PMFresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA356E518D11D6D00716D3D /* PMFresh.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		5BA356D418D11C1600716D3D /* PMFreshTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PMFreshTests-Info.plist"; sourceTree = "<group>"; };
 		5BA356D618D11C1600716D3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5BA356D818D11C1600716D3D /* PMFreshTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMFreshTests.m; sourceTree = "<group>"; };
+		5BA356E418D11D6D00716D3D /* PMFresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMFresh.h; sourceTree = "<group>"; };
+		5BA356E518D11D6D00716D3D /* PMFresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMFresh.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,7 @@
 		5BA356A718D11C1600716D3D = {
 			isa = PBXGroup;
 			children = (
+				5BA356E318D11D5500716D3D /* PMFreshLibrary */,
 				5BA356B918D11C1600716D3D /* PMFresh */,
 				5BA356D218D11C1600716D3D /* PMFreshTests */,
 				5BA356B218D11C1600716D3D /* Frameworks */,
@@ -142,6 +146,16 @@
 				5BA356D518D11C1600716D3D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5BA356E318D11D5500716D3D /* PMFreshLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				5BA356E418D11D6D00716D3D /* PMFresh.h */,
+				5BA356E518D11D6D00716D3D /* PMFresh.m */,
+			);
+			name = PMFreshLibrary;
+			path = ../PMFreshLibrary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BA356C418D11C1600716D3D /* AppDelegate.m in Sources */,
+				5BA356E618D11D6D00716D3D /* PMFresh.m in Sources */,
 				5BA356C018D11C1600716D3D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +460,7 @@
 				5BA356DE18D11C1600716D3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5BA356DF18D11C1600716D3D /* Build configuration list for PBXNativeTarget "PMFreshTests" */ = {
 			isa = XCConfigurationList;
@@ -453,6 +469,7 @@
 				5BA356E118D11C1600716D3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
