@@ -21,6 +21,7 @@
 		5BA356D718D11C1600716D3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BA356D518D11C1600716D3D /* InfoPlist.strings */; };
 		5BA356D918D11C1600716D3D /* PMFreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA356D818D11C1600716D3D /* PMFreshTests.m */; };
 		5BA356E618D11D6D00716D3D /* PMFresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA356E518D11D6D00716D3D /* PMFresh.m */; };
+		5BD0F1BA18D43E9C0022A3E0 /* resources.zip in Resources */ = {isa = PBXBuildFile; fileRef = 5BD0F1B918D43E9C0022A3E0 /* resources.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		5BA356D818D11C1600716D3D /* PMFreshTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMFreshTests.m; sourceTree = "<group>"; };
 		5BA356E418D11D6D00716D3D /* PMFresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMFresh.h; sourceTree = "<group>"; };
 		5BA356E518D11D6D00716D3D /* PMFresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMFresh.m; sourceTree = "<group>"; };
+		5BD0F1B918D43E9C0022A3E0 /* resources.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = resources.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				5BA356C218D11C1600716D3D /* AppDelegate.h */,
 				5BA356C318D11C1600716D3D /* AppDelegate.m */,
 				5BA356C518D11C1600716D3D /* Images.xcassets */,
+				5BD0F1B918D43E9C0022A3E0 /* resources.zip */,
 				5BA356BA18D11C1600716D3D /* Supporting Files */,
 			);
 			path = PMFresh;
@@ -243,6 +246,7 @@
 			files = (
 				5BA356BE18D11C1600716D3D /* InfoPlist.strings in Resources */,
 				5BA356C618D11C1600716D3D /* Images.xcassets in Resources */,
+				5BD0F1BA18D43E9C0022A3E0 /* resources.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

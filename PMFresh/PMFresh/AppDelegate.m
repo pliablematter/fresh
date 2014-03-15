@@ -13,7 +13,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.fresh = [[PMFresh alloc] initWithPackageName:@"packageName" remotePackageUrl:@"remotePackageUrl" localPackagePath:@"localPackagePath"];
+    self.fresh = [[PMFresh alloc] initWithPackageName:@"resources"
+                                     remotePackageUrl:@"https://dl.dropboxusercontent.com/u/22977638/resources.zip"
+                                     localPackagePath:[[NSBundle mainBundle] pathForResource:@"resources" ofType:@"zip"]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
