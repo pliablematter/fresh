@@ -13,7 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.fresh = [[PMFresh alloc] initWithPackageName:@"resources"
+    self.fresh = [[PMFresh alloc] initWithPackageName:@"package"
                                      remotePackageUrl:@"https://dl.dropboxusercontent.com/u/22977638/resources.zip"
                                      localPackagePath:[[NSBundle mainBundle] pathForResource:@"resources" ofType:@"zip"]];
     

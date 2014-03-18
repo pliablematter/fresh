@@ -8,8 +8,11 @@
 
 #import "PMFresh.h"
 
+// NSUserDefaults key.
 #define FRESH_LAST_DOWNLOAD_DATE_KEY    @"kFreshLastDownloadDateKey"
-#define FREST_PACKAGE_OLD_SUFFIX        @"_old" // Used for renaming the old package before unzipping new one
+
+// Used as a name suffix for the new package that will be unzipped.
+#define FRESH_PACKAGE_TEMP_SUFFIX       @"_temp"
 
 @implementation PMFresh
 
@@ -23,6 +26,12 @@
         self.packageName = packageName;
         self.remotePackageUrl = remotePackageUrl;
         self.localPackagePath = localPackagePath;
+        
+        // Set to default timeout interval.
+        self.timeoutInterval = DEFAULT_TIMEOUT_INTERVAL;
+        
+        // Set to default package path.
+        _packagePath = [[self documentsDirectoryPath] stringByAppendingPathComponent:self.packageName];
     }
     return self;
 }
@@ -36,6 +45,7 @@
     NSDate *lastDownloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:FRESH_LAST_DOWNLOAD_DATE_KEY];
     PMLog(@"Last download date: %@", [self stringFromDate:lastDownloadDate]);
     
+    // Request package header to check if it was modified.
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.remotePackageUrl]];
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     [request setHTTPMethod:@"HEAD"];
@@ -95,7 +105,6 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
     {
         PMLog(@"Download succeeded!");
-        [self renameOldPackageIfNeeded];
         [self unzipPackageAtPath:path];
         
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:FRESH_LAST_DOWNLOAD_DATE_KEY];
@@ -104,6 +113,9 @@
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
         PMLog(@"Download failed with error: %@", error);
+        
+        // Remove zip file because download failed.
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     }];
     
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, NSInteger totalBytesRead, NSInteger totalBytesExpectedToRead)
@@ -114,22 +126,44 @@
     [operation start];
 }
 
-- (void)renameOldPackageIfNeeded
+- (BOOL)removeOldPackageIfNeeded
 {
     NSString *packagePath = [[self documentsDirectoryPath] stringByAppendingPathComponent:self.packageName];
-    NSString *oldPackagePath = [packagePath stringByAppendingString:FREST_PACKAGE_OLD_SUFFIX];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:packagePath])
     {
-        [[NSFileManager defaultManager] moveItemAtPath:packagePath toPath:oldPackagePath error:nil];
-        PMLog(@"Old package renamed");
+        [[NSFileManager defaultManager] removeItemAtPath:packagePath error:nil];
+        PMLog(@"Old package removed");
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)renameNewPackageAtPath:(NSString *)path
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path])
+    {
+        NSString *packagePath = [[self documentsDirectoryPath] stringByAppendingPathComponent:self.packageName];
+        
+        [[NSFileManager defaultManager] moveItemAtPath:path toPath:packagePath error:nil];
+        PMLog(@"New package renamed");
+        
+        // User can access package path on the default location.
+        _packagePath = nil;
+        _packagePath = packagePath;
+        PMLog(@"Package is now accessible at default location: %@", self.packagePath);
+        
+        PMLog(@"Update finished!");
     }
 }
 
 - (void)unzipPackageAtPath:(NSString *)path
 {
     PMLog(@"Unzipping package...");
-    [SSZipArchive unzipFileAtPath:path toDestination:[self documentsDirectoryPath] delegate:self];
+    NSString *destinationPath = [[self documentsDirectoryPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", self.packageName, FRESH_PACKAGE_TEMP_SUFFIX]];
+    [SSZipArchive unzipFileAtPath:path toDestination:destinationPath delegate:self];
 }
 
 #pragma mark - Private
@@ -142,7 +176,7 @@
 
 - (NSString *)stringFromDate:(NSDate *)date
 {
-    // Conversion to Last-Modified-Date format
+    // Conversion to Last-Modified-Date format.
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"EEE, dd MMM yyyy HH:mm:ss";
     dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
@@ -156,31 +190,37 @@
 {
     PMLog(@"Package unzipped");
     
-    // Remove zip file
+    // Remove zip file.
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     
-    // Remove __MACOSX folder
-    NSArray *content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self documentsDirectoryPath] error:nil];
+    // Remove __MACOSX folder.
+    NSArray *content = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:unzippedPath error:nil];
     
     for (NSString *filepath in content)
     {
         if ([filepath isEqualToString:@"__MACOSX"])
         {
-            NSString *removePath = [[self documentsDirectoryPath] stringByAppendingPathComponent:filepath];
+            NSString *removePath = [unzippedPath stringByAppendingPathComponent:filepath];
             [[NSFileManager defaultManager] removeItemAtPath:removePath error:nil];
             break;
         }
     }
     
-    // Remove old package
-    NSString *oldPackagePath = [[unzippedPath stringByAppendingPathComponent:self.packageName] stringByAppendingString:FREST_PACKAGE_OLD_SUFFIX];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:oldPackagePath])
-    {
-        [[NSFileManager defaultManager] removeItemAtPath:oldPackagePath error:nil];
-        PMLog(@"Old package removed");
-    }
+    // User can access package path on the temporary location.
+    _packagePath = nil;
+    _packagePath = unzippedPath;
+    PMLog(@"Package is now accessible at temporary location: %@", self.packagePath);
     
-    PMLog(@"Update finished!");
+    // If old package existed, rename new package after delay (timeout interval) to make sure that old package is safely deleted.
+    // Else simply rename the new package to default name.
+    if ([self removeOldPackageIfNeeded])
+    {
+        [self performSelector:@selector(renameNewPackageAtPath:) withObject:unzippedPath afterDelay:self.timeoutInterval];
+    }
+    else
+    {
+        [self renameNewPackageAtPath:unzippedPath];
+    }
 }
 
 @end
