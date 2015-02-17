@@ -118,9 +118,9 @@
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     }];
     
-    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, NSInteger totalBytesRead, NSInteger totalBytesExpectedToRead)
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long totalBytesRead, long totalBytesExpectedToRead)
     {
-        PMLog(@"Download progress: %.2f%%", 100.0 * (float)totalBytesRead / totalBytesExpectedToRead);
+        PMLog(@"Download progress: %.2f%%", 100.0 * totalBytesRead / totalBytesExpectedToRead);
     }];
     
     [operation start];
