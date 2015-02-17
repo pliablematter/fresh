@@ -30,22 +30,15 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/pliablematter"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.source       = { :git => "https://github.com/pliablematter/fresh.git", :commit => "8d18d8ef2fb9000bf9ee4dac973e9823890674a3" }
+  s.source       = { :git => "https://github.com/pliablematter/fresh.git", :tag => "1.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source_files  = "Classes", "PMFreshLibrary/**/*.{h,m}"
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If your library depends on compiler flags you can set them in the xcconfig hash
-  #  where they will only apply to your library. If you depend on other Podspecs
-  #  you can include multiple dependencies to ensure it works.
-
   s.requires_arc = true
   s.platform = :ios, "6.0"
-
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   
   s.dependency "AFNetworking"
   s.dependency "SSZipArchive"
