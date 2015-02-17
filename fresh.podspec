@@ -16,16 +16,11 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "fresh"
-  s.version      = "0.0.1"
+  s.version      = "1.0.0"
   s.summary      = "Keeps content up-to-date in your iOS app"
 
   s.description  = <<-DESC
-                   A longer description of fresh in Markdown format.
-
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
+                   Fresh is a library that keeps your iOS application's content up-to-date without running your own web application and server. Just host your content on Amazon S3 or any standards-compliant web server and you're ready to go.
                    DESC
 
   s.homepage     = "https://github.com/pliablematter/fresh"
@@ -39,8 +34,8 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  s.license      = "MIT"
+  # s.license      = { :type => "MIT", :file => "LICENSE" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -53,10 +48,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Pliable Matter" => "info@pliablematter.com" }
-  # Or just: s.author    = "Pliable Matter"
-  # s.authors            = { "Pliable Matter" => "info@pliablematter.com" }
-  # s.social_media_url   = "http://twitter.com/Pliable Matter"
+  s.social_media_url   = "http://twitter.com/pliablematter"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -78,7 +70,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/pliablematter/fresh.git", :commit => "6de27072aa33fe6e7df1e276009b3b879e40cb1d" }
+  s.source       = { :git => "https://github.com/pliablematter/fresh.git", :tag => "1.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -89,8 +81,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "Classes", "PMFreshLibrary/**/*.{h,m}"
+  s.exclude_files = "PMFresh/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -128,7 +120,7 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+  s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
