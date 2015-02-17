@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/pliablematter"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.source       = { :git => "https://github.com/pliablematter/fresh.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/pliablematter/fresh.git", :commit => "8d18d8ef2fb9000bf9ee4dac973e9823890674a3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
