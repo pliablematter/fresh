@@ -3,7 +3,8 @@
 //  PMFresh
 //
 //  Created by Igor Milakovic on 12/03/14.
-//  Copyright (c) 2014 Pliable Matter. All rights reserved.
+//  Updated by Doug Burns on 2/19/15.
+//  Copyright (c) 2015 Pliable Matter. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

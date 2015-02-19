@@ -3,13 +3,11 @@
 //  PMFresh
 //
 //  Created by Igor Milakovic on 12/03/14.
-//  Copyright (c) 2014 Pliable Matter. All rights reserved.
+//  Updated by Doug Burns on 2/19/15.
+//  Copyright (c) 2015 Pliable Matter. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
-#import <AFNetworking.h>
-#import <SSZipArchive.h>
 
 /*
  Default timeout interval for deleting old package.
@@ -27,7 +25,7 @@
 #define PMLog(args,...)
 #endif
 
-@interface PMFresh : NSObject <SSZipArchiveDelegate>
+@interface PMFresh : NSObject
 
 /*
  Path to local package - in case there is no Internet connection available and package has never been downloaded before.
@@ -63,5 +61,11 @@
  Update method. Call it whenever you need, for example in applicationDidBecomeActive: method.
  */
 - (void)update;
+
+/*
+ Override these to replace default behavior of unzipping and saving as package name to documents directory
+ */
+- (void)savePackage:(NSData*)data;
+- (BOOL)packageExists;
 
 @end
