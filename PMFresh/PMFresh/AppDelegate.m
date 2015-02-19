@@ -3,7 +3,8 @@
 //  PMFresh
 //
 //  Created by Igor Milakovic on 12/03/14.
-//  Copyright (c) 2014 Pliable Matter. All rights reserved.
+//  Updated by Doug Burns on 2/19/15.
+//  Copyright (c) 2015 Pliable Matter. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -13,9 +14,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.fresh = [[PMFresh alloc] initWithPackageName:@"package"
-                                     remotePackageUrl:@"https://dl.dropboxusercontent.com/u/22977638/resources.zip"
-                                     localPackagePath:[[NSBundle mainBundle] pathForResource:@"resources" ofType:@"zip"]];
+    self.fresh = [[PMFresh alloc] initWithPackageName:@"content"
+                                     remotePackageUrl:@"http://s3.amazonaws.com/pm-fresh/content.gz"
+                                     localPackagePath:[[NSBundle mainBundle] pathForResource:@"content" ofType:@"gz"]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
