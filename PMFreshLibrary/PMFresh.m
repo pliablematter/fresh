@@ -31,13 +31,20 @@
         
         // Set to default package path.
         _packagePath = [[self documentsDirectoryPath] stringByAppendingPathComponent:self.packageName];
+        
+        // Ensure that expanded package files are available
+        [self retrievePackageFromBundleIfNeeded];
     }
     return self;
 }
 
 #pragma mark - Public
 
-- (void)update
+- (void)update {
+    [self updateWithHeaders:NULL];
+}
+
+- (void)updateWithHeaders:(NSDictionary*)headers
 {
     PMLog(@"Update started.");
     
@@ -47,6 +54,14 @@
     // Request package header to check if it was modified.
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.remotePackageUrl] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:self.timeoutInterval];
     [request setValue:lastDownloadDate forHTTPHeaderField:@"If-Modified-Since"];
+    
+    if(headers) {
+        for(id key in headers) {
+            [request setValue:[headers objectForKey:key] forHTTPHeaderField:key];
+        }
+    }
+    
+    NSLog(@"Sending request with headers %@", [request allHTTPHeaderFields]);
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
