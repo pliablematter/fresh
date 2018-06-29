@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.requires_arc = true
-  s.platform = :ios, "6.0"
+  s.platform = :ios
   
   s.dependency "GZIP"
 end
