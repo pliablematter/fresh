@@ -63,6 +63,11 @@
 - (void)update;
 
 /*
+ Similar to update method, but takes an array of headers to send with the HTTP request. Useful for passing some kind of authentication.
+ */
+- (void)updateWithHeaders:(NSDictionary*) headers;
+
+/*
  Override these to replace default behavior of unzipping and saving as package name to documents directory
  */
 - (void)savePackage:(NSData*)data;
