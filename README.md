@@ -2,13 +2,26 @@ Fresh is a library that helps to keep your iOS application's content up-to-date 
 
 ## Here's how it works
 
-1. Gzip your content and upload it S3 or a standards compliant web server (we refer to this gzip file as a package below)
+1. Tar and gzip your content and upload it S3 or a standards compliant web server (we refer to this .tgz file as a package below)
 2. Include a default copy of the package in the app bundle you distribute. This ensures that some content is always available. It is used if a network connection isn't available the first time your app loads.
 3. Instantiate PMFresh in your app delegate and provide the remote content URL, name of the default package (in your bundle) and the name of the directory where you'd like to have the package expanded.
 4. Call [fresh update] whenever you want to check for updated content. (applicationDidBecomeActive is a good place for this)
 5. Fresh will make sure that the latest available version of your content is available to your app in its Documents directory.
 
 ## Getting Started
+
+The remote and local packages *must* be a tarred gzip, otherwise extraction will fail.
+
+You can .tgz a file or entire directory like this:
+
+```
+tar -zcvf file.tgz file_to_compress
+```
+```
+tar -zcvf directory.tgz directory_to_compress
+```
+(It's the same command for both)
+
 For a basic setup that checks for new content and startup, you could add the following to your app delegate
 
 

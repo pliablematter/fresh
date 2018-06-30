@@ -14,6 +14,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) PMFresh *fresh;
+@property (strong, nonatomic) PMFresh *fileFresh;
+@property (strong, nonatomic) PMFresh *directoryFresh;
 
 @end

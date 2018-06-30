@@ -21,7 +21,6 @@
 		5BA356D718D11C1600716D3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BA356D518D11C1600716D3D /* InfoPlist.strings */; };
 		5BA356D918D11C1600716D3D /* PMFreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA356D818D11C1600716D3D /* PMFreshTests.m */; };
 		5BA356E618D11D6D00716D3D /* PMFresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA356E518D11D6D00716D3D /* PMFresh.m */; };
-		9140DA5B1A9608DE004A33F2 /* content.gz in Resources */ = {isa = PBXBuildFile; fileRef = 9140DA5A1A9608DE004A33F2 /* content.gz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +55,8 @@
 		5BA356E418D11D6D00716D3D /* PMFresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMFresh.h; sourceTree = "<group>"; };
 		5BA356E518D11D6D00716D3D /* PMFresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMFresh.m; sourceTree = "<group>"; };
 		85875A01481D72100FBB474A /* Pods-PMFresh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PMFresh.release.xcconfig"; path = "Pods/Target Support Files/Pods-PMFresh/Pods-PMFresh.release.xcconfig"; sourceTree = "<group>"; };
-		9140DA5A1A9608DE004A33F2 /* content.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; name = content.gz; path = ../content.gz; sourceTree = "<group>"; };
+		91F3740320E7CF8000F29FFB /* directory.tgz */ = {isa = PBXFileReference; lastKnownFileType = file; path = directory.tgz; sourceTree = "<group>"; };
+		91F3740420E7D26000F29FFB /* file.tgz */ = {isa = PBXFileReference; lastKnownFileType = file; path = file.tgz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +120,8 @@
 		5BA356B918D11C1600716D3D /* PMFresh */ = {
 			isa = PBXGroup;
 			children = (
-				9140DA5A1A9608DE004A33F2 /* content.gz */,
+				91F3740420E7D26000F29FFB /* file.tgz */,
+				91F3740320E7CF8000F29FFB /* directory.tgz */,
 				5BA356C218D11C1600716D3D /* AppDelegate.h */,
 				5BA356C318D11C1600716D3D /* AppDelegate.m */,
 				5BA356C518D11C1600716D3D /* Images.xcassets */,
@@ -256,7 +257,6 @@
 			files = (
 				5BA356BE18D11C1600716D3D /* InfoPlist.strings in Resources */,
 				5BA356C618D11C1600716D3D /* Images.xcassets in Resources */,
-				9140DA5B1A9608DE004A33F2 /* content.gz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,11 +296,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PMFresh/Pods-PMFresh-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
+				"${BUILT_PRODUCTS_DIR}/tarkit/tarkit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/tarkit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -467,6 +467,7 @@
 				GCC_PREFIX_HEADER = "PMFresh/PMFresh-Prefix.pch";
 				INFOPLIST_FILE = "PMFresh/PMFresh-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pliablematter.PMFresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -483,6 +484,7 @@
 				GCC_PREFIX_HEADER = "PMFresh/PMFresh-Prefix.pch";
 				INFOPLIST_FILE = "PMFresh/PMFresh-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pliablematter.PMFresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

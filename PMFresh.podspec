@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name         = "PMFresh"
-  s.version      = "1.1.0"
+  s.version      = "1.0.0"
   s.summary      = "Keeps content up-to-date in your iOS app"
 
   s.description  = <<-DESC
@@ -40,5 +40,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.platform = :ios
   
-  s.dependency "GZIP"
+  s.dependency 'tarkit', '~> 0.1.3'
 end
