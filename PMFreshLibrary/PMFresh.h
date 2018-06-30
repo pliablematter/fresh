@@ -70,7 +70,7 @@
 /*
  Override these to replace default behavior of unzipping and saving as package name to documents directory
  */
-- (void)savePackage:(NSData*)data;
+- (BOOL)savePackage:(NSData*)data;
 - (BOOL)packageExists;
 
 @end

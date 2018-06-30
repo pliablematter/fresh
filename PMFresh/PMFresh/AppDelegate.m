@@ -14,9 +14,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.fresh = [[PMFresh alloc] initWithPackageName:@"content"
-                                     remotePackageUrl:@"https://s3.amazonaws.com/pm-fresh/content.gz"
-                                     localPackagePath:[[NSBundle mainBundle] pathForResource:@"content" ofType:@"gz"]];
+    self.fileFresh = [[PMFresh alloc] initWithPackageName:@"file"
+                                     remotePackageUrl:@"https://s3.amazonaws.com/pm-fresh/file.tgz"
+                                     localPackagePath:[[NSBundle mainBundle] pathForResource:@"file" ofType:@"tgz"]];
+    
+    self.directoryFresh = [[PMFresh alloc] initWithPackageName:@"directory"
+                                         remotePackageUrl:@"https://s3.amazonaws.com/pm-fresh/directory.tgz"
+                                         localPackagePath:[[NSBundle mainBundle] pathForResource:@"directory" ofType:@"tgz"]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:[[UIViewController alloc] init]];
@@ -47,8 +51,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [self.fresh update];
-    [self.fresh updateWithHeaders:@{@"Test1": @"123", @"Test2": @"ABC"}];
+    [self.directoryFresh update];
+    [self.fileFresh updateWithHeaders:@{@"Test1": @"123", @"Test2": @"ABC"}];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

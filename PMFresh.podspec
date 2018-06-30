@@ -40,5 +40,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.platform = :ios
   
-  s.dependency "GZIP"
+  s.dependency 'tarkit', '~> 0.1.3'
 end

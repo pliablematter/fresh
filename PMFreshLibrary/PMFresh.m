@@ -8,7 +8,7 @@
 //
 
 #import "PMFresh.h"
-#import "GZIP.h"
+#import "DCTar.h"
 
 // NSUserDefaults key.
 #define FRESH_LAST_DOWNLOAD_DATE_KEY    @"kFreshLastDownloadDateKey"
@@ -71,8 +71,11 @@
         {
             if(httpResponse.statusCode == 200)
             {
-                [self updateModificationDateWithHeaders:httpResponse.allHeaderFields];
-                [self savePackage:data];
+                BOOL success = [self savePackage:data];
+                if(success)
+                {
+                    [self updateModificationDateWithHeaders:httpResponse.allHeaderFields];
+                }
             }
             else if (httpResponse.statusCode == 304)
             {
@@ -95,24 +98,24 @@
 
 #pragma mark - Package
 
-- (void)savePackage:(NSData*)data
+- (BOOL)savePackage:(NSData*)data
 {
-    NSData *unzippedData = [data gunzippedData];
-    if(!unzippedData)
-    {
-        PMLog(@"Package could not be unzipped. Verify that it is gzip format.");
-        return;
+    NSError *err = nil;
+    @try {
+        BOOL success = [DCTar decompressData:data toPath:self.packagePath error:nil];
+        if(success) {
+            PMLog(@"Package saved to %@", self.packagePath);
+            return YES;
+        }
+        else
+        {
+            PMLog(@"Package could not be extraced. %@", err.localizedDescription);
+            return NO;
+        }
     }
-    
-    NSError *error = nil;
-    BOOL success = [unzippedData writeToFile:self.packagePath options:NSDataWritingAtomic error:&error];
-    if(success)
-    {
-        PMLog(@"Package saved");
-    }
-    else
-    {
-        PMLog(@"Error saving package. %@", error);
+    @catch(NSException* e) {
+        PMLog(@"Packed could not be extraced. Make sure that it's a tarred gzip archive.");
+        return NO;
     }
 }
 
