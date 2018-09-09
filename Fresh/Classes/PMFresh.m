@@ -38,6 +38,29 @@
     return self;
 }
 
+- (id)initWithPackageName:(NSString *)packageName remotePackageUrl:(NSString *)remotePackageUrl localPackagePath:(NSString *)localPackagePath securityApplicationGroupIdentifier:(NSString*)groupId {
+    
+    self = [super init];
+    if (self)
+    {
+        self.packageName = packageName;
+        self.remotePackageUrl = remotePackageUrl;
+        self.localPackagePath = localPackagePath;
+        
+        // Set to default timeout interval.
+        self.timeoutInterval = DEFAULT_TIMEOUT_INTERVAL;
+        
+        // Set to default package path.
+        
+        NSURL *containerUrl = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:groupId];
+        _packagePath = [NSString stringWithFormat:@"%@/%@", containerUrl.path, self.packageName];
+        
+        // Ensure that expanded package files are available
+        [self retrievePackageFromBundleIfNeeded];
+    }
+    return self;
+}
+
 #pragma mark - Public
 
 - (void)update {

@@ -1,0 +1,23 @@
+PODS:
+  - Fresh (0.1.0):
+    - tarkit (~> 0.1.3)
+  - tarkit (0.1.3)
+
+DEPENDENCIES:
+  - Fresh (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - tarkit
+
+EXTERNAL SOURCES:
+  Fresh:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Fresh: 5d1430a3d34372fb55721c1cf6072626b870e3d2
+  tarkit: 5f924f8d5979fcbd14024f4b748c2cb4762f4c20
+
+PODFILE CHECKSUM: 90db465ccabc2c8df76a3ca4ecd479825ae2955b
+
+COCOAPODS: 1.5.3

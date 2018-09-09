@@ -53,9 +53,14 @@
 @property (assign, nonatomic) NSTimeInterval timeoutInterval;
 
 /*
- Default initializer.
+ Default initializer. Uses documents directory for storage.
  */
 - (id)initWithPackageName:(NSString *)packageName remotePackageUrl:(NSString *)remotePackageUrl localPackagePath:(NSString *)localPackagePath;
+
+/*
+ Container initializer. Uses a shared container for storage instead of the documents directory.
+ */
+- (id)initWithPackageName:(NSString *)packageName remotePackageUrl:(NSString *)remotePackageUrl localPackagePath:(NSString *)localPackagePath securityApplicationGroupIdentifier:(NSString*)groupId;
 
 /*
  Update method. Call it whenever you need, for example in applicationDidBecomeActive: method.
