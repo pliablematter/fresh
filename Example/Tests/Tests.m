@@ -1,18 +1,18 @@
 //
-//  PMFreshTests.m
-//  PMFreshTests
+//  FreshTests.m
+//  FreshTests
 //
-//  Created by Igor Milakovic on 12/03/14.
-//  Copyright (c) 2014 Pliable Matter. All rights reserved.
+//  Created by doug@pliablematter.com on 09/09/2018.
+//  Copyright (c) 2018 doug@pliablematter.com. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+@import XCTest;
 
-@interface PMFreshTests : XCTestCase
+@interface Tests : XCTestCase
 
 @end
 
-@implementation PMFreshTests
+@implementation Tests
 
 - (void)setUp
 {
@@ -32,3 +32,4 @@
 }
 
 @end
+
