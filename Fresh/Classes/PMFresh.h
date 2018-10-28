@@ -73,6 +73,11 @@
 - (void)updateWithHeaders:(NSDictionary*) headers;
 
 /*
+ Remove the stored last download date to force a new download
+ */
+- (void)resetLastDownloadDate;
+
+/*
  Override these to replace default behavior of unzipping and saving as package name to documents directory
  */
 - (BOOL)savePackage:(NSData*)data;

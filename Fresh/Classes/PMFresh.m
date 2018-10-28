@@ -11,7 +11,7 @@
 #import "DCTar.h"
 
 // NSUserDefaults key.
-#define FRESH_LAST_DOWNLOAD_DATE_KEY    @"kFreshLastDownloadDateKey"
+#define FRESH_LAST_DOWNLOAD_DATE_SUFFIX    @"FreshLastDownloadDate"
 
 @implementation PMFresh
 
@@ -71,8 +71,8 @@
 {
     PMLog(@"Update started.");
     
-    NSString *lastDownloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:FRESH_LAST_DOWNLOAD_DATE_KEY];
-    PMLog(@"Last download date: %@", lastDownloadDate);
+    NSString *lastDownloadDate = [[NSUserDefaults standardUserDefaults] objectForKey:[self lastDownloadDateKey]];
+    PMLog(@"Last download date: %@ for key %@", lastDownloadDate, [self lastDownloadDateKey]);
     
     // Request package header to check if it was modified.
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.remotePackageUrl] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:self.timeoutInterval];
@@ -119,6 +119,12 @@
     }];
 }
 
+- (void) resetLastDownloadDate {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:[self lastDownloadDateKey]];
+    [defaults synchronize];
+}
+
 #pragma mark - Package
 
 - (BOOL)savePackage:(NSData*)data
@@ -149,19 +155,23 @@
 
 #pragma mark - Private
 
+- (NSString*)lastDownloadDateKey {
+    return [NSString stringWithFormat:@"%@%@", self.packageName, FRESH_LAST_DOWNLOAD_DATE_SUFFIX];
+}
+
 - (void)updateModificationDateWithHeaders:(NSDictionary*)headers
 {
     NSString *lastModified = [headers valueForKey:@"Last-Modified"];
     
     if(lastModified)
     {
-        [[NSUserDefaults standardUserDefaults] setObject:lastModified forKey:FRESH_LAST_DOWNLOAD_DATE_KEY];
-        PMLog(@"Saving last download date %@", lastModified);
+        [[NSUserDefaults standardUserDefaults] setObject:lastModified forKey:[self lastDownloadDateKey]];
+        PMLog(@"Saving last download date %@ for key %@", lastModified, [self lastDownloadDateKey]);
     }
     else
     {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:FRESH_LAST_DOWNLOAD_DATE_KEY];
-        PMLog(@"Response does not include a Last-Modified header. This library may not work as excpected.");
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[self lastDownloadDateKey]];
+        PMLog(@"Response does not include a Last-Modified header. This library may not work as expected.");
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];

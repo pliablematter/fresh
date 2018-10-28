@@ -15,15 +15,20 @@
     self.fileFresh = [[PMFresh alloc] initWithPackageName:@"file"
                                          remotePackageUrl:@"https://s3.amazonaws.com/pm-fresh/file.tgz"
                                          localPackagePath:[[NSBundle mainBundle] pathForResource:@"file" ofType:@"tgz"]];
+    NSLog(@"fileFresh package path is %@", self.fileFresh.packagePath);
     
     self.directoryFresh = [[PMFresh alloc] initWithPackageName:@"directory"
                                               remotePackageUrl:@"https://s3.amazonaws.com/pm-fresh/directory.tgz"
                                               localPackagePath:[[NSBundle mainBundle] pathForResource:@"directory" ofType:@"tgz"]];
+    NSLog(@"directoryFresh package path is %@", self.directoryFresh.packagePath);
     
     self.containerFresh = [[PMFresh alloc] initWithPackageName:@"container"
                                               remotePackageUrl:@"https://s3.amazonaws.com/pm-fresh/file.tgz"
                                               localPackagePath:[[NSBundle mainBundle] pathForResource:@"file" ofType:@"tgz"]
                             securityApplicationGroupIdentifier:@"group.com.pliablematter.fresh"];
+    
+    
+    
     
     
     // Override point for customization after application launch.
