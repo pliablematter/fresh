@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Fresh'
-  s.version          = '1.1.0'
+  s.version          = '1.2.0'
   s.summary          = 'Keeps content up-to-date in your iOS app'
 
 # This description is used to generate tags and improve search results.
