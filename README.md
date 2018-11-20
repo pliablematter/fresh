@@ -37,6 +37,20 @@ For a basic setup that checks for new content and startup, you could add the fol
 
 ```
 
+or if your app is using a container for storing data it would be:
+
+```objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+	self.fresh = [[PMFresh alloc] initWithPackageName:@"content"
+                                              remotePackageUrl:@"http://s3.amazonaws.com/pm-fresh/content.gz"
+                                              localPackagePath:[[NSBundle mainBundle] pathForResource:@"content" ofType:@"gz"]
+                            				  securityApplicationGroupIdentifier:@"group.com.pliablematter.fresh"];
+}
+}
+```
+
+
 ```objc
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
@@ -56,6 +70,16 @@ NSString *packagePath = self.fresh.packagePath;
 By default, Fresh unzips and saves data to the app's Documents directory using the package name as the filename. You can override this behavior to do things such as updating a local database. Just subclass PMFresh and override these functions: 
 * `(void)savePackage:(NSData*)data` - Process and save the data. For example, decompress it, decrypt it, and or save it to the filesystem or a database.
 * `(BOOL)packageExists` - Return `YES` if the package has ever been saved, or `NO` if it has not. In your implementation you may do things like query for the existence of a file, or query the database for certain records.
+
+## .meta file
+By default, Fresh will only use the package that's shipped in the bundle for the first install, or to "restore" if there's an error downloading the remote package. If you include a [package_name].meta file with a Last-Modified key it will handle the local bundle package as if it's a remote resource. This can help you (and your users) save bandwidth since it will install from the local bundle instead of the remote server when the local version is newer. For example, you could ship an app update with the latest content and users who updated the app would get that content immediately. A week later, after the majority of your users had updated, you could push the latest content to your server, at which point any users that had not yet updated would download it. You probably won't always have an app update planned at the same time you want to release content, but when you do following this process can prevent the same content from being downloaded twice (once bundled in the app, again over the network).
+
+The .meta should be JSON, with the same name as your package with a .meta extension. So if your package is named `file.gz` then the .meta file would be `file.gz.meta`. The JSON must included a `Last-Modified` with a date in the same format and time zone as your server. The date must be later (to the second) than the last modified date of the file on the server or it will get downloaded from the server instead.
+
+Example `file.gz.meta`:
+```json
+{"Last-Modified": "Sat, 10 Nov 2018 14:46:48 GMT"}
+```
 
 ## FAQ
 ### How will it know that my content has changed?
