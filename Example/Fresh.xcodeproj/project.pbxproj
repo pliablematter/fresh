@@ -23,6 +23,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		91252D4C21A3724A001CFA29 /* file.tgz.meta in Resources */ = {isa = PBXBuildFile; fileRef = 91252D4B21A37249001CFA29 /* file.tgz.meta */; };
 		9178AE5621452EAB009FF10D /* file.tgz in Resources */ = {isa = PBXBuildFile; fileRef = 9178AE5421452EAB009FF10D /* file.tgz */; };
 		9178AE5721452EAB009FF10D /* directory.tgz in Resources */ = {isa = PBXBuildFile; fileRef = 9178AE5521452EAB009FF10D /* directory.tgz */; };
 		CD19014B9E48A130CFBDFC2D /* Pods_Fresh_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6389BDA10355EF93FCC44D09 /* Pods_Fresh_Tests.framework */; };
@@ -64,6 +65,7 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76BF65BE073158AE4E37E4E8 /* Pods-Fresh_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fresh_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fresh_Example/Pods-Fresh_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		91252D4B21A37249001CFA29 /* file.tgz.meta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = file.tgz.meta; sourceTree = "<group>"; };
 		9178AE5421452EAB009FF10D /* file.tgz */ = {isa = PBXFileReference; lastKnownFileType = file; path = file.tgz; sourceTree = "<group>"; };
 		9178AE5521452EAB009FF10D /* directory.tgz */ = {isa = PBXFileReference; lastKnownFileType = file; path = directory.tgz; sourceTree = "<group>"; };
 		9178AE5821453111009FF10D /* Fresh_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fresh_Example.entitlements; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				9178AE5521452EAB009FF10D /* directory.tgz */,
 				9178AE5421452EAB009FF10D /* file.tgz */,
+				91252D4B21A37249001CFA29 /* file.tgz.meta */,
 				6003F59C195388D20070C39A /* PMAppDelegate.h */,
 				6003F59D195388D20070C39A /* PMAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -298,6 +301,7 @@
 				9178AE5721452EAB009FF10D /* directory.tgz in Resources */,
 				9178AE5621452EAB009FF10D /* file.tgz in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				91252D4C21A3724A001CFA29 /* file.tgz.meta in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +448,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
