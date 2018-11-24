@@ -178,6 +178,11 @@
             NSLog(@"Bundle package last modified date %@ is newer than installed package last modified date %@ for package %@. Installing package from bundle.", bundleLastModified, installedLastModified, self.packageName);
             [self installPackageFromBundle];
         }
+        else if(!installedLastModifiedString) {
+            // This is the case where the bundle package from an earlier version was installed (which didn't set last modified), and there has not yet been update.
+            NSLog(@"Installed package last modified date has not been set for package %@. Installing package from bundle", self.packageName);
+            [self installPackageFromBundle];
+        }
         else
         {
             NSLog(@"Installed package is newer than bundle package for %@. Skipping update from bundle.", self.packageName);
